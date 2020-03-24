@@ -1,0 +1,46 @@
+To demonstrate, let's load the `gromacs` module and then use the `module list` command to show
+which modules we currently have loaded in our environment. ([Gromacs](http://www.gromacs.org/About_Gromacs) is a molecular dynamics
+modelling software package.)
+
+```
+{{ site.host_prompt }} module load gromacs
+{{ site.host_prompt }} module list
+```
+{: .bash}
+```
+Currently Loaded Modulefiles:
+  1) anaconda/python3   3) mpt/2.18
+  2) gcc/6.3.0          4) gromacs/2018.3
+
+```
+{: .output}
+
+So in this case, loading the `gromacs` module
+also loaded a variety of other modules.
+Let's try unloading the `gromacs` package.
+
+```
+{{ site.host_prompt }} module unload gromacs
+{{ site.host_prompt }} module list
+```
+{: .bash}
+```
+Currently Loaded Modulefiles:
+  1) anaconda/python3
+```
+{: .output}
+
+So using `module unload` "un-loads" a module along with its dependencies.
+If we wanted to unload everything at once, we could run `module purge` (unloads everything).
+
+```
+{{ site.host_prompt }} module load gromacs
+{{ site.host_prompt }} module purge
+```
+{: .bash}
+```
+No Modulefiles Currently Loaded.
+```
+{: .output}
+
+Note that `module purge` has removed the `anaconda/python3` module as well as `gromacs` and its dependencies.

@@ -1,0 +1,142 @@
+#------------------------------------------------------------
+# Values for this lesson.
+#------------------------------------------------------------
+
+# Which carpentry is this ("swc", "dc", "lc", or "cp")?
+# swc: Software Carpentry
+# dc: Data Carpentry
+# lc: Library Carpentry
+# cp: Carpentries (to use for instructor traning for instance)
+carpentry: "swc"
+
+# Overall title for pages.
+title: "HPC Carpentry part 2 - High Performance Computing"
+
+# Life cycle stage of the lesson
+# possible values: "pre-alpha", "alpha", "beta", "stable"
+life_cycle: "stable"
+
+#------------------------------------------------------------
+# Generic settings (should not need to change).
+#------------------------------------------------------------
+
+# What kind of thing is this ("workshop" or "lesson")?
+kind: "lesson"
+
+# Magic to make URLs resolve both locally and on GitHub.
+# See https://help.github.com/articles/repository-metadata-on-github-pages/.
+# Please don't change it: <USERNAME>/<PROJECT> is correct.
+repository: <USERNAME>/<PROJECT>
+
+# Email address, no mailto:
+email: "team@carpentries.org"
+
+# Sites.
+amy_site: "https://amy.software-carpentry.org/workshops"
+carpentries_github: "https://github.com/carpentries"
+carpentries_pages: "https://carpentries.github.io"
+carpentries_site: "https://carpentries.org/"
+dc_site: "http://datacarpentry.org"
+example_repo: "https://github.com/carpentries/lesson-example"
+example_site: "https://carpentries.github.io/lesson-example"
+lc_site: "https://librarycarpentry.org/"
+swc_github: "https://github.com/swcarpentry"
+swc_pages: "https://swcarpentry.github.io"
+swc_site: "https://software-carpentry.org"
+template_repo: "https://github.com/carpentries/styles"
+training_site: "https://carpentries.github.io/instructor-training"
+workshop_repo: "https://github.com/carpentries/workshop-template"
+workshop_site: "https://carpentries.github.io/workshop-template"
+cc_by_human: "https://creativecommons.org/licenses/by/4.0/"
+
+# Surveys.
+swc_pre_survey: "https://www.surveymonkey.com/r/swc_pre_workshop_v1?workshop_id="
+swc_post_survey: "https://www.surveymonkey.com/r/swc_post_workshop_v1?workshop_id="
+training_post_survey: "https://www.surveymonkey.com/r/post-instructor-training"
+dc_pre_survey: "https://www.surveymonkey.com/r/dcpreworkshopassessment?workshop_id="
+dc_post_survey: "https://www.surveymonkey.com/r/dcpostworkshopassessment?workshop_id="
+lc_pre_survey: "https://www.surveymonkey.com/r/lcpreworkshopsurvey?workshop_id="
+lc_post_survey: "https://www.surveymonkey.com/r/lcpostworkshopsurvey?workshop_id="
+instructor_pre_survey: "https://www.surveymonkey.com/r/instructor_training_pre_survey?workshop_id="
+instructor_post_survey: "https://www.surveymonkey.com/r/instructor_training_post_survey?workshop_id="
+
+# Workshop specific values
+####################################################
+# SITE specific configuration
+# Host and scheduler options
+# Default: Compute Canada: Graham + SLURM
+# 
+# Other options can be found in _extras/snippet_library
+#   Replace options below with those in `_config_options.yml` from the library
+#   and copy all folders in the library into '_includes/snippets'. e.g to setup
+#   for EPCC_Cirrus_pbs we could replace the options below with those from:
+#     _extras/snippet_library/EPCC_Cirrus_pbs/_config_options.yml
+#   and:
+#     cp -r _extras/snippet_library/EPCC_Cirrus_pbs/* _includes/snippets
+#
+# EPCC, The University of Edinburgh: Cirrus + PBS Pro
+host_name: "Cirrus"
+host_login: "login.cirrus.ac.uk"
+host_location: "EPCC, The University of Edinburgh"
+host_homedir: "/lustre/home/tc008/yourUsername"
+host_prompt: "[yourUsername@cirrus-login0 ~]$"
+local_prompt: "[user@laptop ~]$"
+sched_name: "PBS Pro"
+sched_submit: "qsub"
+sched_submit_options: "-A tc008 -q R1262266"
+sched_status: "qstat"
+sched_flag_user: "-u yourUsername"
+sched_del: "qdel"
+sched_interactive: "qsub"
+sched_flag_interactive: "-IVl select=1:ncpus=1"
+sched_info: "pbsnodes -a"
+sched_comment: "#PBS"
+sched_flag_name: "-N"
+sched_hist: "qstat -x"
+sched_flag_histdetail: "-f"
+sched_reservation: "R1262266"
+sched_account: tc008
+
+# Interactive queue names, one or more as a list
+workshop_interactive_queues:
+  - debug
+  - testing
+
+# Start time in minutes (0 to be clock-independent, 540 to show a start at 09:00 am).
+start_time: 570
+
+# Specify that things in the episodes collection should be output.
+collections:
+  episodes:
+    output: true
+    permalink: /:path/index.html
+  extras:
+    output: true
+    permalink: /:path/index.html
+
+# Set the default layout for things in the episodes collection.
+defaults:
+  - values:
+      root: .
+      layout: page
+  - scope:
+      path: ""
+      type: episodes
+    values:
+      root: ..
+      layout: episode
+  - scope:
+      path: ""
+      type: extras
+    values:
+      root: ..
+      layout: page
+
+# Files and directories that are not to be copied.
+exclude:
+  - Makefile
+  - bin/
+  - .Rproj.user/
+
+# Turn on built-in syntax highlighting.
+highlighter: rouge
