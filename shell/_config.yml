@@ -14,7 +14,7 @@ title: "HPC Carpentry part 1 - Using the shell"
 
 # Life cycle stage of the lesson
 # possible values: "pre-alpha", "alpha", "beta", "stable"
-life_cycle: "stable"
+life_cycle: "alpha"
 
 #------------------------------------------------------------
 # Generic settings (should not need to change).
@@ -118,9 +118,9 @@ highlighter: rouge
 # workshop_sched_id: "Sheffield_Bessemer_slurm"
 
 # Example: Cirrus at EPCC, The University of Edinburgh
-workshop_host: "Cirrus"
-workshop_host_id: "EPCC_Cirrus"
-workshop_host_login: "login.cirrus.ac.uk"
-workshop_host_location: "EPCC, The University of Edinburgh"
-workshop_host_prompt: "[yourUsername@cirrus-login0 ~]$ "
-workshop_host_homedir: "/lustre/home/tc008"
+workshop_host: "Iridis"
+workshop_host_id: "Iridis4_a"
+workshop_host_login: "iridis4_a.soton.ac.uk"
+workshop_host_location: "Iridis 4, University of Southampton"
+workshop_host_prompt: "[yourUsername@cyan01 ~]$ "
+workshop_host_homedir: "/home/"
