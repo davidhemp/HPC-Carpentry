@@ -1,0 +1,37 @@
+     ┌────────────────────────────────────────────────────────────────────┐
+     │                         MobaXterm 20.1                             │
+     │            (SSH client, X-server and networking tools)             │
+     │                                                                    │
+     │ ➤ SSH session to dwh1d17@cyan02.iridis.soton.ac.uk                 │
+     │    SSH compression : ✔                                             │
+     │    SSH-browser     : ✔                                             │
+     │    X11-forwarding  : ✔  (remote display is forwarded through SSH)  │
+     │    DISPLAY         : ✔  (automatically set on remote server)       │
+     │                                                                    │
+     │ ➤ For more info, ctrl+click on help or visit our website           │
+     └────────────────────────────────────────────────────────────────────┘
+
+Last login: Tue Mar 24 07:58:16 2020 from 152.78.188.66
+===============================================================
+
+Welcome to Iridis 4.
+The Iridis 4 wiki is at:
+https://hpc.soton.ac.uk/redmine/projects/iridis-4-support/wiki
+
+Please report any issues in the Iridis 4 forums at
+https://hpc.soton.ac.uk/redmine/projects/iridis-4-support/boards
+
+***  SSH client/X-server for Windows***
+
+If you are connecting from a Windows machine we recommend using MobaXterm.
+http://mobaxterm.mobatek.net/download.html
+
+*** scratch nearly full please clean up! ***
+
+The scratch file system is now over 95% full and already at the stage where performance may suffer.
+We are very close to running out of space altogether and the file system becoming unusable.
+
+Could everybody please remove any unnecessary files from your scratch directory as soon as possible.
+
+======================= 21/03/2020 =============================
+
