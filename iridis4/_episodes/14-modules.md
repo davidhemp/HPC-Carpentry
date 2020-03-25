@@ -66,7 +66,7 @@ so
 ```
 {: .bash}
 ```
-No Modulefiles Currently Loaded.
+{% include /snippets/14/default_list.snip %}
 ```
 {: .output}
 

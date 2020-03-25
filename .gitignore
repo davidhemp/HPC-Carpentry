@@ -11,3 +11,4 @@ files/*.fastq
 files/*.tsv
 scratch/
 *.html
+.jekyll-cache

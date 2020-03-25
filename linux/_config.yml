@@ -119,8 +119,8 @@ highlighter: rouge
 
 # Example: Cirrus at EPCC, The University of Edinburgh
 workshop_host: "Iridis"
-workshop_host_id: "Iridis4_a"
+workshop_host_id: "soton"
 workshop_host_login: "iridis4_a.soton.ac.uk"
 workshop_host_location: "Iridis 4, University of Southampton"
 workshop_host_prompt: "[yourUsername@cyan01 ~]$ "
-workshop_host_homedir: "/home/"
+workshop_host_homedir: "/home"
