@@ -43,24 +43,30 @@ lesson sample files using the following command:
 If you are on windows and connecting via [MobaXterm](https://mobaxterm.mobatek.net/) then you can simply drag the files you want to upload/download from the
 sftp panel on the left.
 
+![MobaXterm sftp]({{ site.url }}{{ site.baseurl }}/fig/15/mobaxterm-sftp.png)
 
+We can use the address bar at the top to change directory and there are also buttons to perform a number of common commands.
+
+![MobaXterm address bar]({{ site.url }}{{ site.baseurl }}/fig/15/mobaxterm-buttons.png)
+
+Users can also edit files directly by right clicking on a file and selecting how they want to open it. For example a text file can be opened with notepad++ and then when the user saves the file locally MobaXterm can automatically update the remote copy as well. This saves users having to manually reupload scripts.
 
 {% endif %}
 
 ## Transferring single files and folders with scp
 
 To copy a single file to or from the cluster, we can use `scp`. The syntax can be a little complex
-for new users, but we'll break it down here:
+for new users, but we'll break it down here.
 
-To transfer *to* another computer:
+To transfer *to* the cluster:
 ```
-{{ site.local_prompt }} scp /path/to/local/file.txt yourUsername@remote.computer.address:/path/on/remote/computer
+{{ site.local_prompt }} scp /path/to/local/file.txt yourUsername@{{ site.host_login }}:/home/yourUsername
 ```
 {: .bash}
 
-To download *from* another computer:
+To download *from* another the cluster:
 ```
-{{ site.local_prompt }} scp yourUsername@remote.computer.address:/path/on/remote/computer/file.txt /path/to/local/
+{{ site.local_prompt }} scp yourUsername@{{ site.host_login }}:/path/on/remote/computer/file.txt /path/to/local/
 ```
 {: .bash}
 
@@ -69,14 +75,14 @@ after the `:` is relative to our home directory. We can simply just add a `:` an
 if we don't care where the file goes.
 
 ```
-{{ site.local_prompt }} scp local-file.txt yourUsername@remote.computer.address:
+{{ site.local_prompt }} scp local-file.txt yourUsername@{{ site.host_login }}:
 ```
 {: .bash}
 
 To recursively copy a directory, we just add the `-r` (recursive) flag:
 
 ```
-{{ site.local_prompt }} scp -r some-local-folder/ yourUsername@remote.computer.address:target-directory/
+{{ site.local_prompt }} scp -r some-local-folder/ yourUsername@{{ site.host_login }}:target-directory/
 ```
 {: .bash}
 
@@ -89,7 +95,7 @@ To recursively copy a directory, we just add the `-r` (recursive) flag:
 >
 > The syntax is similar to `scp`. To transfer *to* another computer with commonly used options:
 > ```
-> [local]$ rsync -avzP /path/to/local/file.txt yourUsername@remote.computer.address:/path/on/remote/computer
+> [local]$ rsync -avzP /path/to/local/file.txt yourUsername@{{ site.host_login }}:/path/on/remote/computer
 > ```
 > {: .bash}
 >
@@ -101,7 +107,7 @@ To recursively copy a directory, we just add the `-r` (recursive) flag:
 >
 > To recursively copy a directory, we can use the same options:
 > ```
-> [local]$ rsync -avzP /path/to/local/dir yourUsername@remote.computer.address:/path/on/remote/computer
+> [local]$ rsync -avzP /path/to/local/dir yourUsername@{{ site.host_login }}:/path/on/remote/computer
 > ```
 > {: .bash}
 >
@@ -109,7 +115,7 @@ To recursively copy a directory, we just add the `-r` (recursive) flag:
 >
 > To download a file, we simply change the source and destination:
 > ```
-> [local]$ rsync -avzP yourUsername@remote.computer.address:/path/on/remote/computer/file.txt /path/to/local/
+> [local]$ rsync -avzP yourUsername@{{ site.host_login }}:/path/on/remote/computer/file.txt /path/to/local/
 > ```
 > {: .bash}
 {: .callout}
@@ -137,8 +143,8 @@ Hit "Quickconnect" to connect! You should see your remote files appear on the ri
 screen. You can drag-and-drop files between the left (local) and right (remote) sides of the screen
 to transfer files.
 
-## Archiving files
-
+## Archiving and compressing files
+### Tar
 One of the biggest challenges we often face when transferring data between remote HPC systems
 is that of large numbers of files. There is an overhead to transferring each individual file
 and when we are transferring large numbers of files these overheads combine to slow down our
@@ -149,9 +155,9 @@ before we transfer the data to improve our transfer efficiency. Sometimes we wil
 archiving with *compression* to reduce the amount of data we have to transfer and so speed up
 the transfer.
 
-The most common archiving command you will use on (Linux) HPC cluster is `tar`. `tar` can be used
+The most common archiving command you will use on a (Linux) HPC cluster is `tar`. `tar` can be used
 to combine files into a single archive file and, optionally, compress. For example, to collect
-all files contained inside `output_data` into an archive file called `output_data.tar` we would use:
+all files contained inside the directory `output_data` into an archive file called `output_data.tar` we would use:
 
 ```
 {{ site.local_prompt }} tar -cvf output_data.tar output_data/
@@ -176,7 +182,7 @@ directory already exists!
 
 Sometimes you may also want to compress the archive to save space and speed up the transfer. However,
 you should be aware that for large amounts of data compressing and un-compressing can take longer
-than transferring the un-compressed data  so you may not want to transfer. To create a compressed
+than transferring the un-compressed data. To create a compressed
 archive using `tar` we add the `-z` option and add the `.gz` extension to the file to indicate
 it is compressed, e.g.:
 
@@ -193,6 +199,25 @@ same time:
 {{ site.local_prompt }} tar -xvf output_data.tar.gz
 ```
 {: .bash}
+
+### zip files
+
+If your local machine is windows based you are likely more familiar with zip files. Linux can handle these too with an program call zip.
+You can create a zip file with:
+```
+{{ site.local_prompt }} zip output_data.zip -r output_data/
+```
+{: .bash}
+
+and you can unzip a file similarly with:
+
+```
+{{ site.local_prompt }} unzip output_data.zip
+```
+{: .bash}
+
+This should allow windows users to move compressed files between operating systems, although it should be noted that compressed tar files are often smaller.
+
 
 > ## Transferring files
 >
