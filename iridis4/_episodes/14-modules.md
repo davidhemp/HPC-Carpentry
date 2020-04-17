@@ -72,7 +72,7 @@ so
 
 ### Listing available modules
 
-To see available software modules, use `module avail`
+To see available software modules, use `module avail`. Here we have only shown a small part of the list, as there is a large range of software available.
 
 ```
 {{ site.host_prompt }} module avail
@@ -105,7 +105,8 @@ so we can use it to tell us where a particular piece of software is stored.
 We can load the `python3` command with `module load`:
 
 ```
-{% include /snippets/14/load_python.snip %}
+{{ site.host_prompt }} {% include /snippets/14/load_python.snip %}
+{{ site.host_prompt }} which python3
 ```
 {: .bash}
 ```

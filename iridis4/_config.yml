@@ -75,7 +75,7 @@ instructor_post_survey: "https://www.surveymonkey.com/r/instructor_training_post
 #     cp -r _extras/snippet_library/EPCC_Cirrus_pbs/* _includes/snippets
 #
 # EPCC, The University of Edinburgh: Cirrus + PBS Pro
-host_name: "soton"
+host_name: "iridis"
 host_login: "iridis4_a.soton.ac.uk"
 host_location: "The University of Southampton"
 host_homedir: "/home/yourUsername"
@@ -96,6 +96,9 @@ sched_hist: "qstat -x"
 sched_flag_histdetail: "-f"
 sched_reservation: ""
 sched_account: ""
+
+#Soton recommends MobaXterm for windows users, use this to enable those elements in the workshop
+include_mobaxterm: true
 
 # Interactive queue names, one or more as a list
 workshop_interactive_queues:

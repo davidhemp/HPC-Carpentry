@@ -8,27 +8,44 @@ objectives:
 - "Be able to transfer files to and from a computing cluster."
 keypoints:
 - "`wget` downloads a file from the internet."
+- "Drag-and-drop with MobaXterm."
 - "`scp` transfer files to and from your computer."
 - "You can use an SFTP client like FileZilla to transfer files through a GUI."
 ---
 
-Computing with a remote computer offers very limited use if we cannot get files to 
-or from the cluster. There are several options for transferring data between computing 
+Computing with a remote computer offers very limited use if we cannot get files to
+or from the cluster. There are several options for transferring data between computing
 resources, from command line options to GUI programs, which we will cover here.
+
+> ## Downloading on compute nodes
+> Files should only be transferred to/from Iridis on the login nodes and only the login nodes
+> have access to the wider internet. Downloading data is a slow process that will reduce job efficiency
+> if performed on a compute node.
+{: .callout}
 
 ## Download files from the internet using wget
 
-One of the most straightforward ways to download files is to use `wget`. Any file 
-that can be downloaded in your web browser with an accessible link can be downloaded 
-using `wget`. This is a quick way to download datasets or source code. 
+One of the most straightforward ways to download files is to use `wget`. Any file
+that can be downloaded in your web browser with an accessible link can be downloaded
+using `wget`. This is a quick way to download datasets or source code. On
 
-The syntax is: `wget https://some/link/to/a/file.tar.gz`. For example, download the 
+The syntax is: `wget https://some/link/to/a/file.tar.gz`. For example, download the
 lesson sample files using the following command:
 
 ```
 {{ site.host_prompt }} wget {{ site.url }}{{ site.baseurl }}/files/bash-lesson.tar.gz
 ```
 {: .bash}
+
+{% if site.include_mobaxterm %}
+## Drag and drop using MobaXterm
+
+If you are on windows and connecting via [MobaXterm](https://mobaxterm.mobatek.net/) then you can simply drag the files you want to upload/download from the
+sftp panel on the left.
+
+
+
+{% endif %}
 
 ## Transferring single files and folders with scp
 
@@ -87,9 +104,9 @@ To recursively copy a directory, we just add the `-r` (recursive) flag:
 > [local]$ rsync -avzP /path/to/local/dir yourUsername@remote.computer.address:/path/on/remote/computer
 > ```
 > {: .bash}
-> 
+>
 > The `a` (archive) option implies recursion.
-> 
+>
 > To download a file, we simply change the source and destination:
 > ```
 > [local]$ rsync -avzP yourUsername@remote.computer.address:/path/on/remote/computer/file.txt /path/to/local/
@@ -123,12 +140,12 @@ to transfer files.
 ## Archiving files
 
 One of the biggest challenges we often face when transferring data between remote HPC systems
-is that of large numbers of files. There is an overhead to transferring each individual file 
+is that of large numbers of files. There is an overhead to transferring each individual file
 and when we are transferring large numbers of files these overheads combine to slow down our
 transfers to a large degree.
 
 The solution to this problem is to *archive* multiple files into smaller numbers of larger files
-before we transfer the data to improve our transfer efficiency. Sometimes we will combine 
+before we transfer the data to improve our transfer efficiency. Sometimes we will combine
 archiving with *compression* to reduce the amount of data we have to transfer and so speed up
 the transfer.
 
@@ -169,7 +186,7 @@ it is compressed, e.g.:
 {: .bash}
 
 The `tar` command is used to extract the files from the archive in exactly the same way as for
-uncompressed data as `tar` recognizes it is compressed and un-compresses and extracts at the 
+uncompressed data as `tar` recognizes it is compressed and un-compresses and extracts at the
 same time:
 
 ```
@@ -188,18 +205,18 @@ same time:
 > When you transfer files to from a Windows system to a Unix system (Mac, Linux, BSD, Solaris, etc.)
 > this can cause problems. Windows encodes its files slightly different than Unix, and adds an extra
 > character to every line.
-> 
+>
 > On a Unix system, every line in a file ends with a `\n` (newline). On Windows, every line in a
 > file ends with a `\r\n` (carriage return + newline). This causes problems sometimes.
-> 
+>
 > Though most modern programming languages and software handles this correctly, in some rare
 > instances, you may run into an issue. The solution is to convert a file from Windows to Unix
 > encoding with the `dos2unix` command.
-> 
+>
 > You can identify if a file has Windows line endings with `cat -A filename`. A file with Windows
 > line endings will have `^M$` at the end of every line. A file with Unix line endings will have `$`
 > at the end of a line.
-> 
+>
 > To convert the file, just run `dos2unix filename`. (Conversely, to convert back to Windows format,
 > you can run `unix2dos filename`.)
 {: .callout}
